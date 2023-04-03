@@ -63,39 +63,6 @@
 ::
 ::
 ::
-title DEVELOPMENT BUILD! 
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
-call :colorEcho 0C "YOU ARE USING A DEVELOPMENT BUILD -=- ISSUE WILL OCCUR"
-echo.
 
 title NoGuardian
 :: initialize ::
@@ -104,6 +71,7 @@ set current=%cd%
 set vers=1.0
 set dev=true
 set site=www.backslashg.com
+mode con:cols=55 lines=13
 
 powershell -Command Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 :: le updater ::

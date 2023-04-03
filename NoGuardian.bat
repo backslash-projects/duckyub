@@ -159,7 +159,6 @@ GOTO MENU_START
 
 :OPTION2
 set INPUT=true
-echo please wait..
 winget install 9NZVDKPMR9RD --accept-package-agreements
 timeout 2 > NUL
 GOTO MENU_START
@@ -183,6 +182,9 @@ goto MENU_START
 
 :debug
 set INPUT=true
+echo.
+echo Please see external window. 
+
 (
 echo.
 echo NoGuardian = %date% %time%
@@ -194,6 +196,7 @@ type %~n0%~x0
 ) > %temp%\debug.txt
 echo.
 %temp%\debug.txt
+del %temp%\debug.txt
 cd %current%
 goto MENU_START
 

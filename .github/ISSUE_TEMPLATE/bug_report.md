@@ -27,7 +27,7 @@ In order to get your log:
 1. Open NoGuardian
 2. Type 'debug'
 3. Copy and paste the log provided
-![image](https://cdn.backslashg.com/r/explorer_EMdptjnzqs.png)
+
 
 **Additional context**
 Add any other context about the problem here.

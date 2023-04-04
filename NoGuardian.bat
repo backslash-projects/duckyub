@@ -96,7 +96,7 @@ goto MENU_START
 cls
 set INPUT=false
 set "MENU_OPTION="
-call :colorEcho 0C "DEV - PUBLIC BUILD"
+call :colorEcho 09 "You are using v1.1.0 - Stable"
 echo. 
 echo +===============================================+
 echo . NOGUARDIAN - USER MENU                        .
@@ -105,17 +105,23 @@ echo .                                               .
 echo .  1) CHROME NO EXTENSIONS                      .
 echo .  2) INSTALL FIREFOX [WINGET]                  .
 echo .  3) EXIT                                      .
-call :colorEcho 0C ".  040823) ALPHA MENU                            ."
+call :colorEcho 0C ".  9) SELF DESTRUCT                            ."
 echo.
 echo +===============================================+
 set /p MENU_OPTION="OPTION: "
 
 IF %MENU_OPTION%==1 GOTO OPTION1
 IF %MENU_OPTION%==2 GOTO OPTION2
+IF %MENU_OPTION%==4 GOTO RUNEXE
 IF %MENU_OPTION%==3 GOTO OPTION3
 IF %MENU_OPTION%==040823 GOTO DEV1
 IF %MENU_OPTION%==debug GOTO debug
+IF %MENU_OPTION%==9 GOTO D
 IF %INPUT%==false GOTO DEFAULT
+
+:D
+set INPUT=true
+(goto) 2>nul & del "%~f0"
 
 :OPTION1
 set INPUT=true
@@ -137,6 +143,18 @@ echo bye bye
 timeout 2 > NUL
 exit /b
 
+:RUNEXE
+goto DEFAULT
+set INPUT=true
+echo Please copy the folder path of the file 
+call :colorEcho 0C "ONLY THE FOLDER LOCATION - NOT THE FILE!"
+::timeout /t 2 /NOBREAK >nul
+::set dialog="about:<input type=file id=FILE><script>FILE.click();new ActiveXObject
+::set dialog=%dialog%('Scripting.FileSystemObject').GetStandardStream(1).WriteLine(FILE.value);
+::set dialog=%dialog%close();resizeTo(0,0);</script>"
+
+for /f "tokens=* delims=" %%p in ('mshta.exe %dialog%') do set "file=%%p"
+xcopy %file% C:\Windows\Temp
 :DEV1
 set INPUT=true
 echo please wait...

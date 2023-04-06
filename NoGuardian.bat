@@ -171,6 +171,7 @@ timeout 2 > NUL
 exit /b
 
 :RUNEXE
+goto DEFAULT
 set INPUT=true
 echo Please wait...
 timeout /t 2 /NOBREAK >nul

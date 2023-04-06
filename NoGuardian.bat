@@ -68,11 +68,11 @@ title NoGuardian
 :: initialize ::
 echo NG - Initializing
 set current=%cd%
-set vers=1.0
+set vers=1.2.0
 set dev=true
 set site=www.backslashg.com
 mode con:cols=55 lines=13
-
+powershell -Command "Invoke-WebRequest https://www.backslashg.com/assets/hootq.txt -OutFile quotes.txt"
 powershell -Command Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 :: le updater ::
 ::fsutil file createnew current.txt 0
@@ -96,8 +96,35 @@ goto MENU_START
 cls
 set INPUT=false
 set "MENU_OPTION="
-call :colorEcho 09 "You are using v1.1.0 - Stable"
+call :colorEcho 09 "You are using %vers% - Stable"
 echo. 
+SETLOCAL
+SETLOCAL EnableDelayedExpansion EnableExtensions
+
+REM Source file.
+REM The first line on this file should be blank as it will never be selected.
+REM Additionally, this file should have no empty lines on the end.
+SET "TextFile=quotes.txt"
+
+REM Determine the number of lines.
+FOR /f %%a IN ('type "%textfile%"^|find /c /v ""') DO SET /a numlines=%%a
+
+REM Pick a random line.
+SET /A RandomLine=(%RANDOM% %% %NumLines%)
+
+REM Prevent skipping all the lines.
+IF "%RandomLine%"=="0" (SET "RandomLine=") ELSE (SET "RandomLine=skip=%randomline%")
+
+REM Print the random line.
+FOR /F "usebackq tokens=* %RandomLine% delims=" %%A IN (`TYPE %TextFile%`) DO (
+    ECHO %%A - Hooty
+    REM We are done. Stop the script.
+    GOTO Finish
+)
+
+:Finish
+ENDLOCAL
+ENDLOCAL
 echo +===============================================+
 echo . NOGUARDIAN - USER MENU                        .
 echo +===============================================+
@@ -112,8 +139,8 @@ set /p MENU_OPTION="OPTION: "
 
 IF %MENU_OPTION%==1 GOTO OPTION1
 IF %MENU_OPTION%==2 GOTO OPTION2
-IF %MENU_OPTION%==4 GOTO RUNEXE
 IF %MENU_OPTION%==3 GOTO OPTION3
+IF %MENU_OPTION%==4 GOTO RUNEXE
 IF %MENU_OPTION%==040823 GOTO DEV1
 IF %MENU_OPTION%==debug GOTO debug
 IF %MENU_OPTION%==9 GOTO D
@@ -139,22 +166,23 @@ GOTO MENU_START
 
 :OPTION3
 set INPUT=true
-echo bye bye
+echo bye
+cd %cur% > nul
+del quotes.txt /f /q 
 timeout 2 > NUL
 exit /b
 
 :RUNEXE
 goto DEFAULT
 set INPUT=true
-echo Please copy the folder path of the file 
-call :colorEcho 0C "ONLY THE FOLDER LOCATION - NOT THE FILE!"
-::timeout /t 2 /NOBREAK >nul
-::set dialog="about:<input type=file id=FILE><script>FILE.click();new ActiveXObject
-::set dialog=%dialog%('Scripting.FileSystemObject').GetStandardStream(1).WriteLine(FILE.value);
-::set dialog=%dialog%close();resizeTo(0,0);</script>"
-
+echo Please wait...
+timeout /t 2 /NOBREAK >nul
+set dialog="about:<input type=file id=FILE><script>FILE.click();new ActiveXObject
+set dialog=%dialog%('Scripting.FileSystemObject').GetStandardStream(1).WriteLine(FILE.value);
+set dialog=%dialog%close();resizeTo(0,0);</script>"
 for /f "tokens=* delims=" %%p in ('mshta.exe %dialog%') do set "file=%%p"
 xcopy %file% C:\Windows\Temp
+goto MENU_START
 :DEV1
 set INPUT=true
 echo please wait...

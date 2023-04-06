@@ -166,7 +166,9 @@ GOTO MENU_START
 
 :OPTION3
 set INPUT=true
-echo bye bye
+echo bye
+cd %cur% > nul
+del quotes.txt /f /q 
 timeout 2 > NUL
 exit /b
 

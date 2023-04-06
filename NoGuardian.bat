@@ -68,7 +68,7 @@ title NoGuardian
 :: initialize ::
 echo NG - Initializing
 set current=%cd%
-set vers=1.1.0
+set vers=1.2.0
 set dev=true
 set site=www.backslashg.com
 mode con:cols=55 lines=13

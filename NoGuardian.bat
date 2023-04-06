@@ -68,7 +68,7 @@ title NoGuardian
 :: initialize ::
 echo NG - Initializing
 set current=%cd%
-set vers=1.0
+set vers=1.1.0
 set dev=true
 set site=www.backslashg.com
 mode con:cols=55 lines=13
@@ -96,7 +96,7 @@ goto MENU_START
 cls
 set INPUT=false
 set "MENU_OPTION="
-call :colorEcho 09 "You are using v1.1.0 - Stable"
+call :colorEcho 09 "You are using %vers% - Stable"
 echo. 
 SETLOCAL
 SETLOCAL EnableDelayedExpansion EnableExtensions
@@ -117,7 +117,7 @@ IF "%RandomLine%"=="0" (SET "RandomLine=") ELSE (SET "RandomLine=skip=%randomlin
 
 REM Print the random line.
 FOR /F "usebackq tokens=* %RandomLine% delims=" %%A IN (`TYPE %TextFile%`) DO (
-    ECHO %%A
+    ECHO %%A - Hooty
     REM We are done. Stop the script.
     GOTO Finish
 )

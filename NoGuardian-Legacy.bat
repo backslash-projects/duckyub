@@ -63,7 +63,8 @@
 ::
 ::
 ::
-
+echo Please update to the new version of NoGuardian.
+timeout /t 5 /NOBREAK >nul
 title NoGuardian
 :: initialize ::
 echo NG - Initializing

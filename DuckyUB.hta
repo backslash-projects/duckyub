@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+    window.resizeTo(350,370);
+</script>
+    <title>Ducky Unblocker</title>
+    <hta:application
+        id="duckyUnblocker"
+        applicationname="Ducky Unblocker"
+        border="thin"
+        innerborder="no"
+        borderstyle="complex"
+        caption="yes"
+        maximizebutton="no"
+        minimizebutton="yes"
+        navigable="no"
+        showintaskbar="yes"
+        singleinstance="yes"
+        sysmenu="yes"
+        scroll="no"
+        scrollflat="yes"
+    />
+    <style>
+        body {
+            background-color: #330066; /* Dark purple color */
+            font-family: "Microsoft Sans Serif", sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+            text-align: center;
+            padding-top: 50px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title">Ducky Unblocker</div>
+        <div class="subtitle">v2.0.0 // github.com/backslash-projects/duckyub</div>
+        <div class="button-container">
+            <button class="button" onclick="runCommand(1)">Chrome No Extensions</button>
+            <button class="button" onclick="runCommand(2)">Install Firefox via Winget</button>
+            <button class="button" onclick="runCommand(3)">placeholder smh</button>
+        </div>
+    </div>
+
+    <script type="text/vbscript">
+        Sub runCommand(commandNumber)
+            Dim shell
+            Set shell = CreateObject("WScript.Shell")
+            Select Case commandNumber
+                Case 1
+                    shell.Run "cmd.exe /k taskkill /f /im chrome.exe && start chrome.exe --disable-extensions && exit"
+                Case 2
+                    shell.Run "cmd.exe /k winget install 9NZVDKPMR9RD --accept-package-agreements && exit"
+                Case 3
+                    shell.Run "cmd.exe /k echo placeholder silly"
+            End Select
+        End Sub
+    </script>
+</body>
+</html>
